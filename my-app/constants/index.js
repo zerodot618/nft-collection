@@ -1,4 +1,4 @@
-export const WHITELIST_CONTRACT_ADDRESS = "0xd65a6d98aa855A96C0162F3E95d134b2C317b092";
+export const NFT_CONTRACT_ADDRESS = "0x28677D2059bC57e3108F0C618f741f2FaC984914";
 export const abi = [
     {
         "inputs": [
