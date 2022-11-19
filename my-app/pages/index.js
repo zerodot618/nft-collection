@@ -1,9 +1,9 @@
-import Head from 'next/head'
-import { useEffect, useRef, useState } from 'react'
-import { providers, Contract, utils } from "ethers";
-import styles from '../styles/Home.module.css'
-import { abi, NFT_CONTRACT_ADDRESS } from "../constants";
+import { Contract, providers, utils } from "ethers";
+import Head from "next/head";
+import React, { useEffect, useRef, useState } from "react";
 import Web3Modal from "web3modal";
+import { abi, NFT_CONTRACT_ADDRESS } from "../constants";
+import styles from "../styles/Home.module.css";
 
 export default function Home() {
   // walletConnected 追踪用户的钱包是否已连接
@@ -111,8 +111,8 @@ export default function Home() {
       // 第一次使用时，它提示用户连接他们的钱包
       await getProviderOrSigner();
       setWalletConnected(true);
-    } catch (error) {
-      console.error(error)
+    } catch (err) {
+      console.error(err);
     }
   }
 
@@ -133,8 +133,8 @@ export default function Home() {
       setLoading(false);
       // 设置预售状态为 true
       await checkIfPresaleStarted();
-    } catch (error) {
-      console.error(error);
+    } catch (err) {
+      console.error(err);
     }
   }
 
@@ -153,9 +153,9 @@ export default function Home() {
         await getOwner();
       }
       setPresaleStarted(_presaleStarted);
-      return _presaleStarted
-    } catch (error) {
-      console.error(error);
+      return _presaleStarted;
+    } catch (err) {
+      console.error(err);
       return false;
     }
   }
@@ -175,11 +175,11 @@ export default function Home() {
       if (hasEnded) {
         setPresaleEnded(true);
       } else {
-        setPresaleEnded(false)
+        setPresaleEnded(false);
       }
-      return hasEnded
-    } catch (error) {
-      console.error(error);
+      return hasEnded;
+    } catch (err) {
+      console.error(err);
       return false;
     }
   }
@@ -199,11 +199,11 @@ export default function Home() {
       const signer = await getProviderOrSigner(true);
       // 获取与MetaMask相连的签名者的相关地址
       const address = await signer.getAddress();
-      if (address.toLowerCase() === _ower.toLowerCase()) {
+      if (address.toLowerCase() === _owner.toLowerCase()) {
         setIsOwner(true);
       }
-    } catch (error) {
-      console.error(error.message);
+    } catch (err) {
+      console.error(err.message);
     }
   }
 
@@ -220,8 +220,8 @@ export default function Home() {
       const _tokenIds = await nftContract.tokenIds();
       // _tokenIds 是一个 "大数"。我们需要将大数转换为一个字符串
       setTokenIdsMinted(_tokenIds.toString());
-    } catch (error) {
-      console.error(error);
+    } catch (err) {
+      console.error(err);
     }
   }
 
