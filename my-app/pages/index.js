@@ -276,12 +276,12 @@ export default function Home() {
         <button onClick={connectWallet} className={styles.button}>
           连接钱包
         </button>
-      )
+      );
     }
 
     // 如果我们目前正在等待什么，返回一个加载按钮
     if (loading) {
-      return <button className={styles.button}>Loading...</button>
+      return <button className={styles.button}>Loading...</button>;
     }
 
     // 如果连接的用户是所有者，并且预售还没有开始，允许他们开始预售
