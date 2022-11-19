@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.9;
+pragma solidity ^0.8.17;
 
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
@@ -54,7 +54,7 @@ contract ZeroDot618 is ERC721Enumerable, Ownable {
     /**
      * @dev startPresale 开始为白名单上的地址进行预售
      */
-    function startPreSale() public onlyOwner {
+    function startPresale() public onlyOwner {
         presaleStarted = true;
         // 设置预售结束时间为当前时间戳+5分钟
         // Solidity对时间戳有很酷的语法 seconds, minutes, hours, days, years
@@ -73,8 +73,8 @@ contract ZeroDot618 is ERC721Enumerable, Ownable {
             whitelist.whitelistedAddresses(msg.sender),
             "You are not whitelisted"
         );
-        require(tokenIds < maxTokenIds, "Exceeded maximum ZeroDot618 supply");
-        require(msg.value >= _price, "Ether sent is not cottect");
+        require(tokenIds < maxTokenIds, "Exceeded maximum Crypto Devs supply");
+        require(msg.value >= _price, "Ether sent is not correct");
         tokenIds += 1;
         // _safeMint 是 _mint 函数的一个更安全的版本，因为它确保
         // 如果被铸币的地址是一个合约，那么它知道如何处理ERC721代币
@@ -90,7 +90,7 @@ contract ZeroDot618 is ERC721Enumerable, Ownable {
             presaleStarted && block.timestamp >= presaleEnded,
             "Presale has not ended yet"
         );
-        require(tokenIds < maxTokenIds, "Exceeded maxinum ZeroDot618 supply");
+        require(tokenIds < maxTokenIds, "Exceed maximum Crypto Devs supply");
         require(msg.value >= _price, "Ether sent is not correct");
         tokenIds += 1;
         _safeMint(msg.sender, tokenIds);
